@@ -3,13 +3,19 @@
 // (this way we don't have to depend on UnityEngine.DLL and don't need a
 //  different version for every UnityEngine version here)
 using System;
-
+using Serilog;
+using Serilog.Core;
 namespace GnetRpcClient
 {
-    public static class Log
+    public class Log
     {
-        public static Action<string> Info = Console.WriteLine;
-        public static Action<string> Warning = Console.WriteLine;
-        public static Action<string> Error = Console.Error.WriteLine;
+        public Logger logger;
+        public Log()
+        {
+            logger = new LoggerConfiguration()
+       .WriteTo.Console(
+           outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}")
+       .CreateLogger();
+        }
     }
 }

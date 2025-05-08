@@ -43,7 +43,8 @@
                 SendBufferSize = 1024 * 1024,
                 ReceiveBufferSize = 1024 * 1024,
                 SendQueueCap = 1000_00,
-                ReceiveQueueCap = 1000_00
+                ReceiveQueueCap = 1000_00,
+                CheckReconnectInterval = 5 * 1000
             }, OnData, () => { }, () => { });
 
             // var client = new Client(Protocol.MaxBufferCap, () => { }, OnData, () => { });
@@ -53,6 +54,8 @@
             {
                 i++;
                 client.Call(SerializeType.CodeJson, "Builtin", "Add", new Dictionary<string, string>(), new CallReq { a = i, b = 2 });
+                client.Tick(100);
+                Thread.Sleep(1000);
             }
         }
     }

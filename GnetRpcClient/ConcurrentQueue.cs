@@ -20,9 +20,9 @@ namespace GnetRpcClient
             return _queue.TryTake(out item);
         }
 
-        public void Dequeue(out T item)
+        public T Dequeue()
         {
-            item = _queue.Take();
+            return _queue.Take();
         }
         public int Count => _queue.Count;
 

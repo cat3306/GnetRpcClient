@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Net.Sockets;
 namespace GnetRpcClient
@@ -237,10 +236,7 @@ namespace GnetRpcClient
             }
             catch (Exception exception)
             {
-                // something went wrong. the thread was interrupted or the
-                // connection closed or we closed our own connection or ...
-                // -> either way we should stop gracefully
-                Log.Info("[Telepathy] ReceiveLoop: finished receive function for connectionId=" + " reason: " + exception);
+
                 return null;
             }
         }
